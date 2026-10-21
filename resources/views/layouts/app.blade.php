@@ -494,7 +494,23 @@
             </a>
             <ul class="nav-links">
                 <li><a href="{{ route('catalog.index') }}" class="{{ request()->routeIs('catalog.*') ? 'active' : '' }}">Catalog</a></li>
-                <li><a href="{{ route('register') }}" class="{{ request()->routeIs('register*') ? 'active' : '' }}">Register</a></li>
+                @auth
+                    <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: var(--navy); font-weight: 600;">
+                        <span>{{ auth()->user()->name }}</span>
+                        <span class="brand-badge" style="background-color: #dcfce7; color: #15803d;">Approved</span>
+                    </li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                            @csrf
+                            <button type="submit" style="background: none; border: none; color: var(--text-muted); font-size: 0.92rem; font-weight: 500; cursor: pointer; padding: 0; font-family: inherit;">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                @else
+                    <li><a href="{{ route('login') }}" class="{{ request()->routeIs('login') ? 'active' : '' }}">Login</a></li>
+                    <li><a href="{{ route('register') }}" class="{{ request()->routeIs('register*') ? 'active' : '' }}">Register</a></li>
+                @endauth
             </ul>
         </nav>
     </header>
