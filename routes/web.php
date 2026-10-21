@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -15,3 +16,9 @@ Route::get('/register/pending', [RegisterController::class, 'pending'])->name('r
 Route::get('/login', [LoginController::class, 'create'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+
+Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/customers', [AdminCustomerController::class, 'index'])->name('customers.index');
+    Route::post('/customers/{user}/approve', [AdminCustomerController::class, 'approve'])->name('customers.approve');
+    Route::post('/customers/{user}/reject', [AdminCustomerController::class, 'reject'])->name('customers.reject');
+});

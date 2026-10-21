@@ -495,9 +495,16 @@
             <ul class="nav-links">
                 <li><a href="{{ route('catalog.index') }}" class="{{ request()->routeIs('catalog.*') ? 'active' : '' }}">Catalog</a></li>
                 @auth
+                    @if (auth()->user()->is_admin)
+                        <li><a href="{{ route('admin.customers.index') }}" class="{{ request()->routeIs('admin.customers.*') ? 'active' : '' }}">Customers</a></li>
+                    @endif
                     <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: var(--navy); font-weight: 600;">
                         <span>{{ auth()->user()->name }}</span>
-                        <span class="brand-badge" style="background-color: #dcfce7; color: #15803d;">Approved</span>
+                        @if (auth()->user()->is_admin)
+                            <span class="brand-badge" style="background-color: #fef3c7; color: #b45309;">Admin</span>
+                        @else
+                            <span class="brand-badge" style="background-color: #dcfce7; color: #15803d;">Approved</span>
+                        @endif
                     </li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}" style="display: inline;">
