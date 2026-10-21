@@ -61,16 +61,16 @@ The **Wholesale Mobile Shop MVP** is designed specifically for business-to-busin
 
 ## Ticket Status Table
 
-| Ticket # | Title | Status |
+| Ticket ID | Title | Status |
 | :--- | :--- | :---: |
-| Ticket #0 | Laravel project setup, database, and baseline | Not done |
-| Ticket #1 | Database schema, migrations, and core models | Not done |
-| Ticket #2 | Database seeders (Admin, categories, sample products) | Not done |
-| Ticket #3 | Customer registration with pending approval state | Not done |
-| Ticket #4 | Authentication and approval status login gate | Not done |
-| Ticket #5 | Public catalog browsing with wholesale price shielding | Not done |
-| Ticket #6 | Admin customer approval and rejection management | Not done |
-| Ticket #7 | Admin product catalog, pricing, and stock CRUD | Not done |
-| Ticket #8 | Wholesale shopping cart management | Not done |
-| Ticket #9 | Order placement, stock deduction, and customer order history | Not done |
-| Ticket #10 | Admin order fulfillment and status workflow | Not done |
+| T0 | Laravel Project Setup, Database, and Baseline | Done |
+| T1 | Public Catalog Without Prices | Not done |
+| T2 | Customer Registration with Status "Pending" | Not done |
+| T3 | Login Restricted to Approved Customers | Not done |
+| T4 | Admin Approves or Rejects Customers | Not done |
+| T5 | Prices Visible Only to Approved Customers (Server-Side) | Not done |
+| T6 | Shopping Cart | Not done |
+| T7 | Order Placement with Server-Side Validation of Stock and Prices | Not done |
+| T8 | Admin Product, Price, and Stock Management | Not done |
+| T9 | Admin Order View and Customer Order History | Not done |
+| T10 | Final Testing, README Update, and Presentation Notes | Not done |
