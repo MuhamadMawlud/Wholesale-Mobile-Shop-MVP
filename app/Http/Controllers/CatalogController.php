@@ -18,12 +18,8 @@ class CatalogController extends Controller
         $categories = Category::withCount('products')->orderBy('name')->get();
         $selectedCategorySlug = $request->query('category');
 
-        // Select columns: for guests, price is explicitly excluded so it never reaches the view
+        // Select columns: price column is strictly excluded so it never reaches the view
         $columns = ['id', 'category_id', 'name', 'slug', 'description', 'image', 'stock'];
-
-        if (auth()->check()) {
-            $columns[] = 'price';
-        }
 
         $query = Product::select($columns)->with('category:id,name,slug');
 
@@ -49,10 +45,6 @@ class CatalogController extends Controller
     public function show(string $slug): View
     {
         $columns = ['id', 'category_id', 'name', 'slug', 'description', 'image', 'stock'];
-
-        if (auth()->check()) {
-            $columns[] = 'price';
-        }
 
         $product = Product::select($columns)
             ->with('category:id,name,slug')
