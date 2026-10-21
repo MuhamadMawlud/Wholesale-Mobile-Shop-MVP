@@ -64,7 +64,7 @@ The **Wholesale Mobile Shop MVP** is designed specifically for business-to-busin
 | Ticket ID | Title | Status |
 | :--- | :--- | :---: |
 | T0 | Laravel Project Setup, Database, and Baseline | Done |
-| T1 | Public Catalog Without Prices | Not done |
+| T1 | Public Catalog Without Prices | Done |
 | T2 | Customer Registration with Status "Pending" | Not done |
 | T3 | Login Restricted to Approved Customers | Not done |
 | T4 | Admin Approves or Rejects Customers | Not done |
