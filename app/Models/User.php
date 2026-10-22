@@ -45,4 +45,13 @@ class User extends Authenticatable
     {
         return $this->status === 'rejected';
     }
+
+    /**
+     * Determine whether the user is authorized to view wholesale prices.
+     * Accessible to approved customers and administrators.
+     */
+    public function canSeePrices(): bool
+    {
+        return $this->isApproved() || (bool) $this->is_admin;
+    }
 }

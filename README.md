@@ -68,7 +68,7 @@ The **Wholesale Mobile Shop MVP** is designed specifically for business-to-busin
 | T2 | Customer Registration with Status "Pending" | Done |
 | T3 | Login Restricted to Approved Customers | Done |
 | T4 | Admin Approves or Rejects Customers | Done |
-| T5 | Prices Visible Only to Approved Customers (Server-Side) | Not done |
+| T5 | Prices Visible Only to Approved Customers (Server-Side) | Done |
 | T6 | Shopping Cart | Not done |
 | T7 | Order Placement with Server-Side Validation of Stock and Prices | Not done |
 | T8 | Admin Product, Price, and Stock Management | Not done |
