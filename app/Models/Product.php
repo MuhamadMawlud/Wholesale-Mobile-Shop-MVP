@@ -37,4 +37,24 @@ class Product extends Model
     {
         return $this->stock > 0;
     }
+
+    /**
+     * Return the formatted price string (e.g. "$420.00"), or null if price was not loaded.
+     */
+    public function formattedPrice(): ?string
+    {
+        if ($this->price === null) {
+            return null;
+        }
+
+        return static::formatPrice($this->price);
+    }
+
+    /**
+     * Consistent wholesale currency formatting ($X,XXX.XX).
+     */
+    public static function formatPrice(float|int|string $amount): string
+    {
+        return '$'.number_format((float) $amount, 2);
+    }
 }

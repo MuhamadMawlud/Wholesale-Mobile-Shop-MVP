@@ -280,6 +280,44 @@
             text-align: center;
         }
 
+        .price-box {
+            display: flex;
+            align-items: baseline;
+            gap: 0.45rem;
+            flex-wrap: wrap;
+        }
+
+        .price-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .price-amount {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .price-amount-large {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: -0.02em;
+        }
+
+        .price-login-link {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        .price-login-link:hover {
+            color: var(--primary-hover);
+        }
+
         .btn-view {
             display: block;
             text-align: center;

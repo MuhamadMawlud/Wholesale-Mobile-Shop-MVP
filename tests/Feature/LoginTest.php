@@ -26,7 +26,7 @@ class LoginTest extends TestCase
 
     public function test_approved_user_can_log_in_and_is_redirected_to_catalog(): void
     {
-        $user = new User();
+        $user = new User;
         $user->name = 'Approved Partner';
         $user->email = 'approved@wholesalebiz.test';
         $user->password = Hash::make('secret1234');
@@ -45,7 +45,7 @@ class LoginTest extends TestCase
 
     public function test_pending_user_cannot_log_in_and_no_session_is_created(): void
     {
-        $user = new User();
+        $user = new User;
         $user->name = 'Pending Partner';
         $user->email = 'pending@wholesalebiz.test';
         $user->password = Hash::make('secret1234');
@@ -66,7 +66,7 @@ class LoginTest extends TestCase
 
     public function test_rejected_user_cannot_log_in_and_no_session_is_created(): void
     {
-        $user = new User();
+        $user = new User;
         $user->name = 'Rejected Applicant';
         $user->email = 'rejected@wholesalebiz.test';
         $user->password = Hash::make('secret1234');
@@ -87,7 +87,7 @@ class LoginTest extends TestCase
 
     public function test_wrong_password_fails_and_does_not_reveal_email_existence(): void
     {
-        $user = new User();
+        $user = new User;
         $user->name = 'Existing User';
         $user->email = 'existing@wholesalebiz.test';
         $user->password = Hash::make('correctpassword');
@@ -121,7 +121,7 @@ class LoginTest extends TestCase
 
     public function test_authenticated_user_can_log_out_and_session_is_invalidated(): void
     {
-        $user = new User();
+        $user = new User;
         $user->name = 'Active Partner';
         $user->email = 'active@wholesalebiz.test';
         $user->password = Hash::make('secret1234');
@@ -138,12 +138,12 @@ class LoginTest extends TestCase
         $this->assertGuest();
     }
 
-    public function test_catalog_shows_no_prices_even_for_logged_in_approved_user(): void
+    public function test_catalog_shows_prices_for_logged_in_approved_user(): void
     {
         $this->seed(CategorySeeder::class);
         $this->seed(ProductSeeder::class);
 
-        $user = new User();
+        $user = new User;
         $user->name = 'Approved Customer';
         $user->email = 'customer@wholesalebiz.test';
         $user->password = Hash::make('secret1234');
@@ -156,21 +156,17 @@ class LoginTest extends TestCase
         $response->assertOk();
         $content = $response->getContent();
 
-        // Must still show no prices in T3
-        $this->assertStringNotContainsString('$', $content);
-        $this->assertStringNotContainsString('USD', $content);
-        $this->assertStringNotContainsString('€', $content);
-        $this->assertStringNotContainsString('799.00', $content);
-        $this->assertStringNotContainsString('1250.00', $content);
+        // Approved customer sees wholesale prices in T5
+        $this->assertStringContainsString('$', $content);
+        $this->assertStringContainsString('799.00', $content);
 
         // Check product detail
         $detailResponse = $this->actingAs($user)->get('/products/apex-pro-5g-256gb-titanium');
         $detailResponse->assertOk();
         $detailContent = $detailResponse->getContent();
 
-        $this->assertStringNotContainsString('$', $detailContent);
-        $this->assertStringNotContainsString('USD', $detailContent);
-        $this->assertStringNotContainsString('799.00', $detailContent);
+        $this->assertStringContainsString('$', $detailContent);
+        $this->assertStringContainsString('799.00', $detailContent);
     }
 
     public function test_layout_navbar_shows_correct_links_based_on_auth_state(): void
@@ -183,7 +179,7 @@ class LoginTest extends TestCase
         $guestResponse->assertDontSee(route('logout'));
 
         // As Approved User
-        $user = new User();
+        $user = new User;
         $user->name = 'Tech Retailers Group';
         $user->email = 'retailers@wholesalebiz.test';
         $user->password = Hash::make('secret1234');

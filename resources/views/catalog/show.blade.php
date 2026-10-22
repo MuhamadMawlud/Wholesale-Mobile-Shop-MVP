@@ -40,9 +40,24 @@
                 @endif
             </div>
 
-            <div class="price-shield-notice" style="text-align: left; padding: 0.85rem 1rem; margin-bottom: 1.5rem; font-size: 0.88rem;">
-                <strong>Wholesale Pricing Shielded:</strong> Wholesale tiered pricing and volume discounts are reserved for verified business accounts. Sign in with an approved wholesale account to access pricing and ordering.
-            </div>
+            @if ($canSeePrices && $product->price !== null)
+                <div class="price-box" style="margin-bottom: 1.25rem; align-items: baseline;">
+                    <span class="price-label">Wholesale Price:</span>
+                    <span class="price-amount-large">{{ $product->formattedPrice() }}</span>
+                    <span style="font-size: 0.82rem; color: var(--success); font-weight: 600; background-color: var(--success-bg); padding: 0.2rem 0.6rem; border-radius: 9999px; margin-left: 0.5rem;">
+                        Approved Wholesale Pricing
+                    </span>
+                </div>
+            @else
+                <div class="price-shield-notice" style="text-align: left; padding: 0.85rem 1rem; margin-bottom: 1.5rem; font-size: 0.88rem;">
+                    <strong>Wholesale Pricing Shielded:</strong> Wholesale tiered pricing and volume discounts are reserved for verified business accounts.
+                    @guest
+                        <a href="{{ route('login') }}" class="price-login-link">Log in</a> with an approved account to see wholesale prices.
+                    @else
+                        Log in with an approved account to see wholesale prices.
+                    @endguest
+                </div>
+            @endif
 
             <div style="margin-bottom: 1.5rem;">
                 <h3 style="font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 0.4rem;">

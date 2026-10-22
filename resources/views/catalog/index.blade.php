@@ -56,9 +56,21 @@
                                 </span>
                             @endif
 
-                            <div class="price-shield-notice">
-                                Wholesale Price: Available to approved customers
-                            </div>
+                            @if ($canSeePrices && $product->price !== null)
+                                <div class="price-box">
+                                    <span class="price-label">Wholesale:</span>
+                                    <span class="price-amount">{{ $product->formattedPrice() }}</span>
+                                </div>
+                            @else
+                                <div class="price-shield-notice">
+                                    Wholesale Price: Available to approved customers.
+                                    @guest
+                                        <a href="{{ route('login') }}" class="price-login-link">Log in</a> with an approved account to see wholesale prices.
+                                    @else
+                                        Log in with an approved account to see wholesale prices.
+                                    @endguest
+                                </div>
+                            @endif
 
                             <a href="{{ route('catalog.show', $product->slug) }}" class="btn-view">
                                 View Details
